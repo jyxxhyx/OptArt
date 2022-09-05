@@ -86,10 +86,11 @@ def draw_truchet_tiles(centers, length, file_name):
 
 def _draw_plot(polygons, file_name, width, height):
     fig, ax = plt.subplots()
-    patches = []
-    for polygon in polygons:
-        poly = Polygon(polygon, True)
-        patches.append(poly)
+    # patches = []
+    # for polygon in polygons:
+    #     poly = Polygon(polygon, True)
+    #     patches.append(poly)
+    patches = [Polygon(polygon, True) for polygon in polygons]
     p = PatchCollection(patches,
                         facecolors='k',
                         edgecolors='k',
