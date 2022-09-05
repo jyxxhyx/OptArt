@@ -38,13 +38,13 @@ def convert_grey_to_center(mat):
 
 def cal_greyscale(image, w_start, h_start, step):
     sum_grey = 0
-    count = 0
+    # count = 0
     for w in range(w_start, w_start + step):
         for h in range(h_start, h_start + step):
             g = image.getpixel((w, h))
             sum_grey += g
-            count += 1
-    return sum_grey / count
+            # count += 1
+    return sum_grey / step / step
 
 
 def gen_truchet_polygon(center, pattern, x_shift, y_shift, length):
