@@ -49,14 +49,18 @@ def cal_greyscale(image, w_start, h_start, step):
 
 def gen_truchet_polygon(center, pattern, x_shift, y_shift, length):
     if pattern == 'A':
-        polygon = [[0, 0], [0, length], [center * length, center * length], [length, 0], [0, 0]]
+        polygon = [[0, 0], [0, length], [center * length, center * length],
+                   [length, 0], [0, 0]]
     elif pattern == 'B':
-        polygon = [[0, 0], [0, length], [length, length], [center * length, (1 - center) * length], [0, 0]]
+        polygon = [[0, 0], [0, length], [length, length],
+                   [center * length, (1 - center) * length], [0, 0]]
     elif pattern == 'C':
-        polygon = [[length, length], [0, length], [(1 - center) * length, (1 - center) * length], [length, 0],
+        polygon = [[length, length], [0, length],
+                   [(1 - center) * length, (1 - center) * length], [length, 0],
                    [length, length]]
     elif pattern == 'D':
-        polygon = [[0, 0], [(1 - center) * length, center * length], [length, length], [length, 0], [0, 0]]
+        polygon = [[0, 0], [(1 - center) * length, center * length],
+                   [length, length], [length, 0], [0, 0]]
     else:
         raise ValueError('Invalid pattern: {}'.format(pattern))
     polygon = [[point[0] + x_shift, point[1] + y_shift] for point in polygon]
@@ -72,9 +76,12 @@ def draw_truchet_tiles(centers, length, file_name):
                 pattern = 'A'
             else:
                 pattern = 'C'
-            polygons.append(gen_truchet_polygon(centers[i][j], pattern, i * length, j * length, length))
+            polygons.append(
+                gen_truchet_polygon(centers[i][j], pattern, i * length,
+                                    j * length, length))
 
-    _draw_plot(polygons, file_name, (width + 1) * length, (height + 1) * length)
+    _draw_plot(polygons, file_name, (width + 1) * length,
+               (height + 1) * length)
 
 
 def _draw_plot(polygons, file_name, width, height):
@@ -108,7 +115,8 @@ def read_image(file_name):
 def main():
     length = 2
     file = os.path.join(os.pardir, 'data', 'input', 'pearl_wb.jpg')
-    out_file = os.path.join(os.pardir, 'data', 'output', 'pearl_truchet_{}'.format(length))
+    out_file = os.path.join(os.pardir, 'data', 'output',
+                            'pearl_truchet_{}'.format(length))
     image = read_image(file)
     mat = generate_truchet_tiles(image, length=length)
     centers = convert_grey_to_center(mat)
